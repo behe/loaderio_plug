@@ -6,25 +6,21 @@ defmodule LoaderioPlug.Mixfile do
       app: :loaderio_plug,
       version: "0.1.0",
       elixir: "~> 1.4",
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
       preferred_cli_env: ["test.watch": :test],
       deps: deps()
     ]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
-    # Specify extra applications you'll use from Erlang/Elixir
     [extra_applications: [:logger]]
   end
 
   defp deps do
     [
-      {:plug, "~> 1.3"},
-      {:mix_test_watch, "~> 0.2", only: :test},
+      {:plug, "~> 1.8"},
+      {:mix_test_watch, "~> 0.9", only: :test}
     ]
   end
 end
