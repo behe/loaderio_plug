@@ -15,7 +15,7 @@ end
 Then add the following before your router:
 
 ```elixir
-plug Loderio.Plug
+plug Loaderio.Plug
 ```
 
 Your loader.io verification token should be set as a system environment variable:
