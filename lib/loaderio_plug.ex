@@ -8,6 +8,7 @@ defmodule Loaderio.Plug do
     conn
     |> put_resp_content_type("text/plain")
     |> send_resp(200, token)
+    |> halt
   end
   def call(conn, _opts), do: conn
 end
