@@ -20,7 +20,7 @@ defmodule LoaderioPlug.Mixfile do
   defp deps do
     [
       {:plug, "~> 1.8"},
-      {:mix_test_watch, "~> 0.9", only: :test}
+      {:mix_test_watch, "~> 1.0", only: :test}
     ]
   end
 end
