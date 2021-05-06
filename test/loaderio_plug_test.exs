@@ -9,16 +9,30 @@ defmodule Loaderio.PlugTest do
 
   test "use default env token" do
     options = Loaderio.Plug.init()
-    conn = conn(:get, "/loaderio-env_verification_token")
-    |> Loaderio.Plug.call(options)
+
+    conn =
+      conn(:get, "/loaderio-env_verification_token")
+      |> Loaderio.Plug.call(options)
 
     assert conn.resp_body == "loaderio-env_verification_token"
   end
 
-  test "configured  token overrides env token" do
-    options = Loaderio.Plug.init([token: "loaderio-configured_verification_token"])
-    conn = conn(:get, "/loaderio-configured_verification_token")
-    |> Loaderio.Plug.call(options)
+  test "configured token overrides env token" do
+    options = Loaderio.Plug.init(token: "loaderio-configured_verification_token")
+
+    conn =
+      conn(:get, "/loaderio-configured_verification_token")
+      |> Loaderio.Plug.call(options)
+
+    assert conn.resp_body == "loaderio-configured_verification_token"
+  end
+
+  test "configured token function overrides env token" do
+    options = Loaderio.Plug.init(token: fn -> "loaderio-configured_verification_token" end)
+
+    conn =
+      conn(:get, "/loaderio-configured_verification_token")
+      |> Loaderio.Plug.call(options)
 
     assert conn.resp_body == "loaderio-configured_verification_token"
   end
